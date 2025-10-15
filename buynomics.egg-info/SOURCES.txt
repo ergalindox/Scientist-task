@@ -1,0 +1,6 @@
+README.md
+setup.py
+buynomics.egg-info/PKG-INFO
+buynomics.egg-info/SOURCES.txt
+buynomics.egg-info/dependency_links.txt
+buynomics.egg-info/top_level.txt
