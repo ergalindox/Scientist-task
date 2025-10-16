@@ -23,4 +23,5 @@ def prediction(model, df, save_path):
     print(f"Simulated total revenue ({factor_value - 100:+.0f}% on the price): {simulated_revenue:,.2f}")
     print(f"Change in revenue: {((simulated_revenue - baseline_revenue) / baseline_revenue) * 100:.2f}%")
 
+
     simulated_df.to_csv(save_path, index=False)
