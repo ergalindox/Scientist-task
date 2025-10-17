@@ -16,6 +16,7 @@ def preprocess_data(sales_path, product_path):
   final_df['Avg_Price_by_Product'] = final_df.groupby('product_id')['price'].transform('mean')
   final_df['Total_volum_pack'] = final_df['volume_per_joghurt_g'] * final_df['packsize']
   final_df['date'] = pd.to_datetime(final_df['date'])
+  final_df.drop("volume_per_joghurt_g", axis=1)
 
   return final_df
 
@@ -24,6 +25,11 @@ def train_data(final_df):
   
   num_cols =  final_df.select_dtypes(include="number").columns.tolist()
   cat_cols = final_df.select_dtypes(include="object").columns.tolist()
+
+  # Move 'packsize' from numeric to categorical
+  if 'packsize' in num_cols:
+      num_cols.remove('packsize')
+      cat_cols.append('packsize')
 
   df_encoded = pd.get_dummies(final_df, columns=cat_cols, drop_first=True)
   feature_cols = [col for col in df_encoded.columns if any(cat in col for cat in cat_cols)] + [col for col in num_cols if col != 'units']
