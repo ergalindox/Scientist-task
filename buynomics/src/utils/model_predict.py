@@ -4,6 +4,13 @@ from buynomics.src.utils.functions import train_data
 
 
 def prediction(model, df, save_path):
+    """
+    Function makes a prediction with a trained model to give simulated units depending on an input price change
+    Args: 
+    - model: model already trained with data
+    - df: dataframe with processed data that was used to train the model
+    - save_path: path to save the final dataset with predictions
+    """
 
     X, _ = train_data(df)
     simulated_df = copy.deepcopy(X)

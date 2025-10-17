@@ -22,7 +22,12 @@ def preprocess_data(sales_path, product_path):
 
 
 def train_data(final_df):
-  
+  """
+  Function returns the final two dataframes to be trained in the model 
+  Args: 
+   - final_df: dataframe already processed with all necessary columns
+  """
+
   num_cols =  final_df.select_dtypes(include="number").columns.tolist()
   cat_cols = final_df.select_dtypes(include="object").columns.tolist()
 

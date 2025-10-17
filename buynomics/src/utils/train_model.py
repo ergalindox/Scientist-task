@@ -9,7 +9,15 @@ import sklearn
 
 
 def train_model(X,y, model_name, save_path):
-  
+  """
+  Function trains a model and prints the scores with the testing data.
+  Args: 
+  - X: dataframe with all columns except the one to be predicted
+  - y: dataframe with only the column to be predicted
+  - model_name: the model type that will be used
+  - save_path: where the model will be saved for future predictions
+  """
+
   if model_name == "Linear Regression":
     model = LinearRegression()
     file_model = 'Linear_Reg.pkl'
@@ -17,17 +25,7 @@ def train_model(X,y, model_name, save_path):
     model = lgb.LGBMRegressor(verbosity = -1)
     file_model = 'LGBMReg.pkl'
   elif model_name == "XGBoost":
-    model = xgb.XGBRegressor(n_estimators=100,          # number of boosting rounds
-                            learning_rate=0.03,         # smaller learning rate for better generalization
-                            max_depth=6,                # tree depth (controls complexity)
-                            min_child_weight=5,         # prevents overfitting by requiring min sum of instance weight
-                            subsample=0.8,              # row sampling for each tree
-                            colsample_bytree=0.8,       # column sampling for each tree
-                            gamma=0.1,                  # minimum loss reduction required for a split
-                            reg_alpha=0.1,              # L1 regularization (sparsity)
-                            reg_lambda=1.0,             # L2 regularization
-                            objective='reg:squarederror',
-                            booster='gbtree')
+    model = xgb.XGBRegressor()
     file_model = 'XGBoost_Reg.pkl'
 
   
