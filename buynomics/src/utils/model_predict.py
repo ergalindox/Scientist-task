@@ -38,11 +38,15 @@ def prediction(model, df, save_path):
     simulated_price = simulated_df['price'].mean()
 
     # Compute changes
+    
     pct_change_price = (simulated_price - baseline_price) / baseline_price
     pct_change_units = (simulated_units - baseline_units) / baseline_units
 
     # Calculate elasticity
-    elasticity = pct_change_units / pct_change_price
+    if pct_change_price != 0:
+        elasticity = pct_change_units / pct_change_price
+    else:
+        elasticity = 0
 
     # Print results
     print(f"Baseline total revenue: {baseline_revenue:,.2f}")

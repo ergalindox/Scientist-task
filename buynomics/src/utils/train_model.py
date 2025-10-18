@@ -22,10 +22,10 @@ def train_model(X,y, model_name, save_path):
     model = LinearRegression()
     file_model = 'Linear_Reg.pkl'
   elif model_name == "LightGBM":
-    model = lgb.LGBMRegressor(verbosity = -1)
+    model = lgb.LGBMRegressor(learning_rate = 0.1, n_estimators = 20, verbosity = -1)
     file_model = 'LGBMReg.pkl'
   elif model_name == "XGBoost":
-    model = xgb.XGBRegressor()
+    model = xgb.XGBRegressor(learning_rate = 0.1, n_estimators = 20)
     file_model = 'XGBoost_Reg.pkl'
 
   

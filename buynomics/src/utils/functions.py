@@ -15,9 +15,7 @@ def preprocess_data(sales_path, product_path):
   final_df['Avg_Price_by_Brand'] = final_df.groupby('brand')['price'].transform('mean')
   final_df['Avg_Price_by_Product'] = final_df.groupby('product_id')['price'].transform('mean')
   final_df['Total_volum_pack'] = final_df['volume_per_joghurt_g'] * final_df['packsize']
-  final_df['date'] = pd.to_datetime(final_df['date'])
-  final_df.drop("volume_per_joghurt_g", axis=1)
-
+  final_df.drop(["volume_per_joghurt_g", "date"], axis=1, inplace=True)
   return final_df
 
 
